@@ -75,9 +75,18 @@ rdfs:comment """
         a lv2:InputPort ,
             lv2:ControlPort ;
         lv2:index 2 ;
+        lv2:symbol "INTENSITY" ;
+        lv2:name "INTENSITY" ;
+        lv2:default 6.0 ;
+        lv2:minimum 1.0 ;
+        lv2:maximum 1e+01 ;
+    ]      , [
+        a lv2:InputPort ,
+            lv2:ControlPort ;
+        lv2:index 3 ;
         lv2:symbol "SATURATE" ;
         lv2:name "SATURATE" ;
-        lv2:default 50.0 ;
+        lv2:default 6e+01 ;
         lv2:minimum 0.0 ;
-        lv2:maximum 100 ;
+        lv2:maximum 1e+02 ;
     ] .

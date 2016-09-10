@@ -32,6 +32,7 @@ typedef enum
 {
    EFFECTS_OUTPUT,
    EFFECTS_INPUT,
+   INTENSITY, 
    SATURATE, 
 } PortIndex;
 
