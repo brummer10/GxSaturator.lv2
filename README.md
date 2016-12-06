@@ -5,7 +5,7 @@ A LV2 saturation plugin
 
 ###### BUILD DEPENDENCY’S 
 
-the following packages are needed to build gxtuner :
+the following packages are needed to build GxSaturator:
 
 - libc6-dev
 - libgtk2.0-dev
