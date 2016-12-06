@@ -9,7 +9,7 @@ private:
 	uint32_t fSamplingFreq;
 	FAUSTFLOAT 	fslider0;
 	FAUSTFLOAT	*fslider0_;
-	float 	fRec0[2];
+	double 	fRec0[2];
 	FAUSTFLOAT 	fslider1;
 	FAUSTFLOAT	*fslider1_;
 	void connect(uint32_t port,void* data);
@@ -71,28 +71,28 @@ void always_inline Dsp::compute(int count, FAUSTFLOAT *input0, FAUSTFLOAT *outpu
 {
 #define fslider0 (*fslider0_)
 #define fslider1 (*fslider1_)
-	float 	fSlow0 = (0.007000000000000006f * float(fslider0));
-	float 	fSlow1 = (0.01f * float(fslider1));
-	float 	fSlow2 = (1 - fSlow1);
+	double 	fSlow0 = (0.007000000000000006 * double(fslider0));
+	double 	fSlow1 = (0.01 * double(fslider1));
+	double 	fSlow2 = (1 - fSlow1);
 	for (int i=0; i<count; i++) {
-		fRec0[0] = ((0.993f * fRec0[1]) + fSlow0);
-		float fTemp0 = (float)input0[i];
-		float fTemp1 = max(-1.0f, min(1.0f, (fSlow1 * (fTemp0 * fRec0[0]))));
-		float fTemp2 = ((8.276057040778557f * fTemp1) + ((0 - (2.634350774700782f * fTemp1)) * fabsf((6.5f * fTemp1))));
-		float fTemp3 = ((7.002817496043395f * fTemp1) + ((0 - (2.229066040131431f * fTemp1)) * fabsf((5.5f * fTemp1))));
-		float fTemp4 = ((5.729577951308232f * fTemp1) + ((0 - (1.82378130556208f * fTemp1)) * fabsf((4.5f * fTemp1))));
-		float fTemp5 = ((4.45633840657307f * fTemp1) + ((0 - (1.4184965709927289f * fTemp1)) * fabsf((3.5f * fTemp1))));
-		float fTemp6 = ((3.183098861837907f * fTemp1) + ((0 - (1.0132118364233778f * fTemp1)) * fabsf((2.5f * fTemp1))));
-		float fTemp7 = ((1.909859317102744f * fTemp1) + ((0 - (0.6079271018540267f * fTemp1)) * fabsf((1.5f * fTemp1))));
-		float fTemp8 = ((0.6366197723675814f * fTemp1) + ((0 - (0.20264236728467555f * fTemp1)) * fabsf((0.5f * fTemp1))));
-		output0[i] = (FAUSTFLOAT)((fSlow2 * fTemp0) + (0.6666666666666666f * ((((((((fTemp8 + (0.225f * ((fTemp8 * fabsf(fTemp8)) - fTemp8))) + (0.3f * (fTemp7 + (0.225f * ((fTemp7 * fabsf(fTemp7)) - fTemp7))))) + (0.15f * (fTemp6 + (0.225f * ((fTemp6 * fabsf(fTemp6)) - fTemp6))))) + (0.075f * (fTemp5 + (0.225f * ((fTemp5 * fabsf(fTemp5)) - fTemp5))))) + (0.0375f * (fTemp4 + (0.225f * ((fTemp4 * fabsf(fTemp4)) - fTemp4))))) + (0.01875f * (fTemp3 + (0.225f * ((fTemp3 * fabsf(fTemp3)) - fTemp3))))) + (0.009375f * (fTemp2 + (0.225f * ((fTemp2 * fabsf(fTemp2)) - fTemp2))))) / fRec0[0])));
+		fRec0[0] = ((0.993 * fRec0[1]) + fSlow0);
+		double fTemp0 = (double)input0[i];
+		double fTemp1 = max(-1.0, min(1.0, (fSlow1 * (fTemp0 * fRec0[0]))));
+		double fTemp2 = ((8.276057040778557 * fTemp1) + ((0 - (2.634350774700782 * fTemp1)) * fabs((6.5 * fTemp1))));
+		double fTemp3 = ((7.002817496043395 * fTemp1) + ((0 - (2.229066040131431 * fTemp1)) * fabs((5.5 * fTemp1))));
+		double fTemp4 = ((5.729577951308232 * fTemp1) + ((0 - (1.82378130556208 * fTemp1)) * fabs((4.5 * fTemp1))));
+		double fTemp5 = ((4.45633840657307 * fTemp1) + ((0 - (1.4184965709927289 * fTemp1)) * fabs((3.5 * fTemp1))));
+		double fTemp6 = ((3.183098861837907 * fTemp1) + ((0 - (1.0132118364233778 * fTemp1)) * fabs((2.5 * fTemp1))));
+		double fTemp7 = ((1.909859317102744 * fTemp1) + ((0 - (0.6079271018540267 * fTemp1)) * fabs((1.5 * fTemp1))));
+		double fTemp8 = ((0.6366197723675814 * fTemp1) + ((0 - (0.20264236728467555 * fTemp1)) * fabs((0.5 * fTemp1))));
+		output0[i] = (FAUSTFLOAT)((fSlow2 * fTemp0) + (0.6666666666666666 * ((((((((fTemp8 + (0.225 * ((fTemp8 * fabs(fTemp8)) - fTemp8))) + (0.3 * (fTemp7 + (0.225 * ((fTemp7 * fabs(fTemp7)) - fTemp7))))) + (0.15 * (fTemp6 + (0.225 * ((fTemp6 * fabs(fTemp6)) - fTemp6))))) + (0.075 * (fTemp5 + (0.225 * ((fTemp5 * fabs(fTemp5)) - fTemp5))))) + (0.0375 * (fTemp4 + (0.225 * ((fTemp4 * fabs(fTemp4)) - fTemp4))))) + (0.01875 * (fTemp3 + (0.225 * ((fTemp3 * fabs(fTemp3)) - fTemp3))))) + (0.009375 * (fTemp2 + (0.225 * ((fTemp2 * fabs(fTemp2)) - fTemp2))))) / fRec0[0])));
 		// post processing
 		fRec0[1] = fRec0[0];
 	}
 #undef fslider0
 #undef fslider1
 }
-		
+
 void __rt_func Dsp::compute_static(int count, FAUSTFLOAT *input0, FAUSTFLOAT *output0, PluginLV2 *p)
 {
 	static_cast<Dsp*>(p)->compute(count, input0, output0);
@@ -104,10 +104,10 @@ void Dsp::connect(uint32_t port,void* data)
 	switch ((PortIndex)port)
 	{
 	case INTENSITY: 
-		fslider0_ = (float*)data; // , 6.0f, 1.0f, 1e+01f, 0.01f 
+		fslider0_ = (float*)data; // , 6.0, 1.0, 1e+01, 0.01 
 		break;
 	case SATURATE: 
-		fslider1_ = (float*)data; // , 6e+01f, 0.0f, 1e+02f, 1.0f 
+		fslider1_ = (float*)data; // , 6e+01, 0.0, 1e+02, 1.0 
 		break;
 	default:
 		break;
