@@ -40,9 +40,9 @@ static void gx_paint_box_get_property(
 static gboolean gx_paint_box_expose(GtkWidget *widget, GdkEventExpose *event);
 static void gx_paint_box_style_set (GtkWidget *widget, GtkStyle  *previous_style);
 
-G_DEFINE_TYPE(GxPaintBox, gx_paint_box, GTK_TYPE_BOX)
+G_DEFINE_TYPE(GxSatPaintBox, gx_paint_box, GTK_TYPE_BOX)
 
-static void gx_paint_box_class_init (GxPaintBoxClass *klass)
+static void gx_paint_box_class_init (GxSatPaintBoxClass *klass)
 {
 	GObjectClass   *gobject_class = G_OBJECT_CLASS(klass);
 	GtkObjectClass *object_class = (GtkObjectClass*) klass;
@@ -89,7 +89,7 @@ static void gx_paint_box_class_init (GxPaintBoxClass *klass)
 
 }
 
-static void set_paint_func(GxPaintBox *paint_box, const gchar *paint_func)
+static void set_paint_func(GxSatPaintBox *paint_box, const gchar *paint_func)
 {
 	gchar *spf;
 	gtk_widget_style_get(GTK_WIDGET(paint_box), "paint-func", &spf, NULL);
@@ -114,12 +114,12 @@ static void set_paint_func(GxPaintBox *paint_box, const gchar *paint_func)
 
 static void gx_paint_box_style_set(GtkWidget *widget, GtkStyle  *previous_style)
 {
-	GxPaintBox *paint_box = GX_PAINT_BOX(widget);
+	GxSatPaintBox *paint_box = GX_SAT_PAINT_BOX(widget);
 	set_paint_func(paint_box, paint_box->paint_func);
 }
 
 
-static void gx_paint_box_init (GxPaintBox *paint_box)
+static void gx_paint_box_init (GxSatPaintBox *paint_box)
 {
 	gtk_widget_set_redraw_on_allocate(GTK_WIDGET(paint_box), TRUE);
 	paint_box->paint_func = g_strdup("");
@@ -131,7 +131,7 @@ static void gx_paint_box_init (GxPaintBox *paint_box)
 
 static void gx_paint_box_destroy(GtkObject *object)
 {
-	GxPaintBox *paint_box = GX_PAINT_BOX(object);
+	GxSatPaintBox *paint_box = GX_SAT_PAINT_BOX(object);
 	if (paint_box->paint_func) {
 		g_free(paint_box->paint_func);
 		paint_box->paint_func = NULL;
@@ -149,7 +149,7 @@ static void gx_paint_box_destroy(GtkObject *object)
 
 static gboolean gx_paint_box_expose(GtkWidget *widget, GdkEventExpose *event)
 {
-	GxPaintBox *paint_box = GX_PAINT_BOX(widget);
+	GxSatPaintBox *paint_box = GX_SAT_PAINT_BOX(widget);
 	if (paint_box->expose_func) {
 		paint_box->expose_func(widget, event);
 	}
@@ -160,7 +160,7 @@ static gboolean gx_paint_box_expose(GtkWidget *widget, GdkEventExpose *event)
 static void gx_paint_box_set_property(
 	GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
 {
-	GxPaintBox *paint_box = GX_PAINT_BOX(object);
+	GxSatPaintBox *paint_box = GX_SAT_PAINT_BOX(object);
 	switch (prop_id) {
 	case PROP_PAINT_FUNC:
 		set_paint_func(paint_box, g_value_get_string(value));
@@ -176,7 +176,7 @@ static void gx_paint_box_get_property(
 {
 	switch (prop_id) {
 	case PROP_PAINT_FUNC:
-		g_value_set_string(value, GX_PAINT_BOX(object)->paint_func);
+		g_value_set_string(value, GX_SAT_PAINT_BOX(object)->paint_func);
 		break;
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
@@ -187,7 +187,7 @@ static void gx_paint_box_get_property(
 GtkWidget *gx_paint_box_new (GtkOrientation orientation, gboolean homogeneous, gint spacing)
 {
 	return (GtkWidget*)g_object_new(
-		GX_TYPE_PAINT_BOX,
+		GX_TYPE_SAT_PAINT_BOX,
 		"orientation", orientation,
 		"spacing",     spacing,
 		"homogeneous", homogeneous ? TRUE : FALSE,
@@ -208,7 +208,7 @@ static void pedal_expose(GtkWidget *wi, GdkEventExpose *ev)
 	    return;
 	}
 	cairo_t *cr;
-	GxPaintBox *paintbox = GX_PAINT_BOX(wi);
+	GxSatPaintBox *paintbox = GX_SAT_PAINT_BOX(wi);
 	/* create a cairo context */
 	cr = gdk_cairo_create(gtk_widget_get_window(wi));
 	GdkRegion *region;
@@ -242,7 +242,7 @@ static void pedal_expose(GtkWidget *wi, GdkEventExpose *ev)
     g_free (allocation); 
 }
 
-void set_expose_func(GxPaintBox *paint_box, const gchar *paint_func)
+void set_expose_func(GxSatPaintBox *paint_box, const gchar *paint_func)
 {
 	if (strcmp(paint_func, "pedal_expose") == 0) {
 		paint_box->expose_func = pedal_expose;

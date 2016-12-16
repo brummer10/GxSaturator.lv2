@@ -21,8 +21,8 @@
  * ----------------------------------------------------------------------------
  */
 
-#ifndef __GTK_KNOB_H__
-#define __GTK_KNOB_H__
+#ifndef __GTK_SAT_KNOB_H__
+#define __GTK_SAT_KNOB_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,21 +33,21 @@ extern "C" {
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_KNOB          (gtk_knob_get_type())
-#define GTK_KNOB(obj)          (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_KNOB, GtkKnob))
-#define GTK_IS_KNOB(obj)       (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_KNOB))
-#define GTK_KNOB_CLASS(klass)  (G_TYPE_CHECK_CLASS_CAST ((klass),  GTK_TYPE_KNOB, GtkKnobClass))
-#define GTK_IS_KNOB_CLASS(obj) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_TYPE_KNOB))
-#define GTK_KNOB_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_KNOB, GtkKnobClass))
+#define GTK_TYPE_SAT_KNOB          (gtk_knob_get_type())
+#define GTK_SAT_KNOB(obj)          (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SAT_KNOB, GtkSatKnob))
+#define GTK_IS_SAT_KNOB(obj)       (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SAT_KNOB))
+#define GTK_SAT_KNOB_CLASS(klass)  (G_TYPE_CHECK_CLASS_CAST ((klass),  GTK_TYPE_SAT_KNOB, GtkSatKnobClass))
+#define GTK_IS_SAT_KNOB_CLASS(obj) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_TYPE_SAT_KNOB))
+#define GTK_SAT_KNOB_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SAT_KNOB, GtkSatKnobClass))
 
-typedef struct _GtkKnob GtkKnob;
-typedef struct _GtkKnobClass GtkKnobClass;
+typedef struct _GtkSatKnob GtkSatKnob;
+typedef struct _GtkSatKnobClass GtkSatKnobClass;
 
-struct _GtkKnob {
+struct _GtkSatKnob {
 	GtkRange parent;
 };
 
-struct _GtkKnobClass {
+struct _GtkSatKnobClass {
 	GtkRangeClass parent_class;
 };
 
