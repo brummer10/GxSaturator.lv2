@@ -58,9 +58,7 @@
 
     
 rdfs:comment """
-
-...
-
+A saturation plugin
 """;
 
     lv2:port  [
