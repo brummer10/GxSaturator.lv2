@@ -91,7 +91,7 @@
     position:absolute;
     right:30px;
     text-align:center;
-    top:340px;
+    top:370px;
 }
 
 .mod-pedal-boxy{{{cns}}} .mod-plugin-name h1 {
@@ -121,7 +121,7 @@
     left:10px;
     position:absolute;
     right:10px;
-    top:235px;
+    top:295px;
 }
 
 .mod-pedal-boxy{{{cns}}}.mod-five-knobs .mod-light,
@@ -147,7 +147,7 @@
     background-position:bottom center;
     background-repeat:no-repeat;
     background-size:auto 132px;
-    bottom: 95px;
+    bottom: 45px;
     left: 13px;
     right: 13px;
     cursor:pointer;
@@ -923,6 +923,27 @@
 .mod-pedal-boxy{{{cns}}}.mod-saturator {
     background-image:url(/resources/pedals/boxy/saturator.png{{{ns}}});
 }
+.mod-pedal-boxy{{{cns}}}.mod-stb {
+    background-image:url(/resources/pedals/boxy/stb.png{{{ns}}});
+}
+.mod-pedal-boxy{{{cns}}}.mod-boxy75.mod-stb {
+    background-image:url(/resources/pedals/boxy75/stb.png{{{ns}}});
+}
+.mod-pedal-boxy{{{cns}}}.mod-voodoo {
+    background-image:url(/resources/pedals/boxy/voodoo.png{{{ns}}});
+}
+.mod-pedal-boxy{{{cns}}}.mod-boxy75.mod-voodoo {
+    background-image:url(/resources/pedals/boxy75/voodoo.png{{{ns}}});
+}
+.mod-pedal-boxy{{{cns}}}.mod-hyperion {
+    background-image:url(/resources/pedals/boxy/hyperion.png{{{ns}}});
+}
+.mod-pedal-boxy{{{cns}}}.mod-tonemachine {
+    background-image:url(/resources/pedals/boxy/tonemachine.png{{{ns}}});
+}
+.mod-pedal-boxy{{{cns}}}.mod-boxy75.mod-tonemachine {
+    background-image:url(/resources/pedals/boxy75/tonemachine.png{{{ns}}});
+}
 
 
 /* = COLORS - Color of the pedals labels
@@ -945,8 +966,11 @@
 .mod-pedal-boxy{{{cns}}}.mod-flowerpower .mod-enumerated,
 .mod-pedal-boxy{{{cns}}}.mod-darkblue .mod-enumerated,
 .mod-pedal-boxy{{{cns}}}.mod-warning .mod-enumerated,
-.mod-pedal-boxy{{{cns}}}.mod-green .mod-enumerated
-.mod-pedal-boxy{{{cns}}}.mod-saturator .mod-enumerated
+.mod-pedal-boxy{{{cns}}}.mod-green .mod-enumerated,
+.mod-pedal-boxy{{{cns}}}.mod-saturator .mod-enumerated,
+.mod-pedal-boxy{{{cns}}}.mod-stb .mod-enumerated,
+.mod-pedal-boxy{{{cns}}}.mod-hyperion .mod-enumerated,
+.mod-pedal-boxy{{{cns}}}.mod-tonemachine .mod-enumerated
 {
     background-image:url(/resources/utils/dropdown-arrow-white.png{{{ns}}});
 }
@@ -1017,15 +1041,30 @@
 .mod-pedal-boxy{{{cns}}}.mod-warning .mod-control-group .mod-knob > span.mod-knob-title,
 .mod-pedal-boxy{{{cns}}}.mod-green h1,
 .mod-pedal-boxy{{{cns}}}.mod-green .mod-enumerated,
-.mod-pedal-boxy{{{cns}}}.mod-green .mod-control-group .mod-knob > span.mod-knob-title
+.mod-pedal-boxy{{{cns}}}.mod-green .mod-control-group .mod-knob > span.mod-knob-title,
 .mod-pedal-boxy{{{cns}}}.mod-vintage h1,
 .mod-pedal-boxy{{{cns}}}.mod-vintage .mod-enumerated,
-.mod-pedal-boxy{{{cns}}}.mod-vintage .mod-control-group .mod-knob > span.mod-knob-title
-.mod-pedal-boxy{{{cns}}}.mod-saturator h1,
+.mod-pedal-boxy{{{cns}}}.mod-vintage .mod-control-group .mod-knob > span.mod-knob-title,
 .mod-pedal-boxy{{{cns}}}.mod-saturator .mod-enumerated,
-.mod-pedal-boxy{{{cns}}}.mod-saturator .mod-control-group .mod-knob > span.mod-knob-title
+.mod-pedal-boxy{{{cns}}}.mod-saturator .mod-control-group .mod-knob > span.mod-knob-title,
+.mod-pedal-boxy{{{cns}}}.mod-stb h1,
+.mod-pedal-boxy{{{cns}}}.mod-stb .mod-enumerated,
+.mod-pedal-boxy{{{cns}}}.mod-stb .mod-control-group .mod-knob > span.mod-knob-title,
+.mod-pedal-boxy{{{cns}}}.mod-voodoo h1,
+.mod-pedal-boxy{{{cns}}}.mod-voodoo .mod-enumerated,
+.mod-pedal-boxy{{{cns}}}.mod-voodoo .mod-control-group .mod-knob > span.mod-knob-title,
+.mod-pedal-boxy{{{cns}}}.mod-hyperion h1,
+.mod-pedal-boxy{{{cns}}}.mod-hyperion .mod-enumerated,
+.mod-pedal-boxy{{{cns}}}.mod-hyperion .mod-control-group .mod-knob > span.mod-knob-title,
+.mod-pedal-boxy{{{cns}}}.mod-tonemachine h1,
+.mod-pedal-boxy{{{cns}}}.mod-tonemachine .mod-enumerated,
+.mod-pedal-boxy{{{cns}}}.mod-tonemachine .mod-control-group .mod-knob > span.mod-knob-title
 {
     color:white;
+}
+.mod-pedal-boxy{{{cns}}}.mod-saturator h1
+{
+    color:#262626 ;
 }
 .mod-pedal-boxy{{{cns}}}.mod-gold h1,
 .mod-pedal-boxy{{{cns}}}.mod-gold .mod-enumerated,
@@ -1136,4 +1175,6 @@
     background-image:url(/resources/knobs/boxy/black.png{{{ns}}});
 }.mod-pedal-boxy{{{cns}}} .mod-control-group.mod-green .mod-knob .mod-knob-image {
     background-image:url(/resources/knobs/boxy/green.png{{{ns}}});
+}.mod-pedal-boxy{{{cns}}} .mod-control-group.mod-cairo .mod-knob .mod-knob-image {
+    background-image:url(/resources/knobs/boxy/cairo.png{{{ns}}});
 }
