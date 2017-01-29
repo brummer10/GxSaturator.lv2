@@ -46,7 +46,7 @@
 
 .PHONY : mod all clean install uninstall 
 
-all : check clean $(NAME)
+all : check $(NAME)
 	@mkdir -p ./$(BUNDLE)
 	@cp ./plugin/*.ttl ./$(BUNDLE)
 	@mv ./*.so ./$(BUNDLE)
@@ -54,7 +54,7 @@ all : check clean $(NAME)
 	else echo $(RED)"sorry, build failed"; fi
 	@echo $(NONE)
 
-mod : check clean nogui
+mod : check nogui
 	@mkdir -p ./$(BUNDLE)
 	@cp -R ./MOD/* ./$(BUNDLE)
 	@mv ./*.so ./$(BUNDLE)
@@ -79,18 +79,22 @@ clean :
 	@rm -rf ./$(BUNDLE)
 	@echo ". ." $(BLUE)", clean up"$(NONE)
 
-install : all
+install :
+ifneq ("$(wildcard ./$(BUNDLE))","")
 	@mkdir -p $(DESTDIR)$(INSTALL_DIR)/$(BUNDLE)
-	cp ./$(BUNDLE)/* $(DESTDIR)$(INSTALL_DIR)/$(BUNDLE)
+	cp -r ./$(BUNDLE)/* $(DESTDIR)$(INSTALL_DIR)/$(BUNDLE)
 	@echo ". ." $(BLUE)", done"$(NONE)
+else
+	@echo ". ." $(BLUE)", you must build first"$(NONE)
+endif
 
 uninstall :
 	@rm -rf $(INSTALL_DIR)/$(BUNDLE)
 	@echo ". ." $(BLUE)", done"$(NONE)
 
-$(NAME) :
+$(NAME) : clean
 	$(CXX) $(CXXFLAGS) $(OBJECTS) $(LDFLAGS) -o $(NAME).so
 	$(CXX) $(CXXFLAGS) -Wl,-z,nodelete -std=c++11 $(GUI_OBJECTS) $(GUI_LDFLAGS) -o $(NAME)_ui.so
 
-nogui :
+nogui : clean
 	$(CXX) $(CXXFLAGS) $(OBJECTS) $(LDFLAGS) -o $(NAME).so
