@@ -168,6 +168,7 @@ typedef struct {
 	cairo_surface_t *surface;
 
 	gx_controller controls[CONTROLS];
+	int block_event;
 	gx_scale rescale;
 
 	void *controller;
@@ -247,6 +248,7 @@ static LV2UI_Handle instantiate(const struct _LV2UI_Descriptor * descriptor,
 
 	ui->controls[0] = (gx_controller) {{ 6.0, 6.0, 1.0, 10.0, 0.1},   { 40, 30, 71, 71}, false,"INTENSITY", KNOB, INTENSITY};
 	ui->controls[1] = (gx_controller) {{ 60.0, 60.0, 0.0, 100.0, 1.0},{ 150, 30, 71, 71}, false,"SATURATE", KNOB, SATURATE};
+	ui->block_event = -1;
 
 
 	ui->pedal = cairo_image_surface_create_from_stream(ui, LDVAR(pedal_png));
@@ -595,8 +597,10 @@ static void send_controller_event(gx_saturateUI *ui, int controller) {
 static void check_value_changed(gx_saturateUI *ui, int i, float* value) {
 	if(fabs(*(value) - ui->controls[i].adj.value)>=0.00001) {
 		ui->controls[i].adj.value = *(value);
-		ui->write_function(ui->controller,ui->controls[i].port,sizeof(float),0,value);
+		if (ui->block_event != ui->controls[i].port)
+			ui->write_function(ui->controller,ui->controls[i].port,sizeof(float),0,value);
 		send_controller_event(ui, i);
+		ui->block_event = -1;
 	}
 }
 
@@ -945,6 +949,7 @@ static void port_event(LV2UI_Handle handle, uint32_t port_index,
 	float value = *(float*)buffer;
 	for (int i=0;i<CONTROLS;i++) {
 		if (port_index == ui->controls[i].port) {
+			ui->block_event = (int)port_index;
 			check_value_changed(ui, i, &value);
 		}
 	}
